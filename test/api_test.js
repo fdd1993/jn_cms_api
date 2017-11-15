@@ -12,14 +12,19 @@ function addLoadEvent(func) {
 }
 // function autoload end
 
+// global variable begin
+var appId = 8191508685727558
+var appKey = '2d2eztfrVDlMOndRKPKuilbZ2dQwfmyg'
+var nonce_str = getRand()
+var index = "http://52.80.116.0"
+var open = window.open;
+// global variable end
 
-// login test begin
+
+// login begin
 function login() {
-    var appId = 8191508685727558
-    var appKey = '2d2eztfrVDlMOndRKPKuilbZ2dQwfmyg'
     var userName = 'test3'
     var aesPassword = '7b4ed46a3c251da928ae956039298d6b'
-    var nonce_str = getRand()
     var postParams = []
     postParams[0] = ["username", userName]
     postParams[1] = ["aesPassword", aesPassword]
@@ -31,18 +36,41 @@ function login() {
     console.log("appId:" + appId)
     console.log("nonce_str:" + nonce_str)
     console.log("sign:" + signVal)
-    var index = "http://52.80.116.0"
     var port = "/api/user/login.jspx"
-    var login_url = index + 
+    var url = index + 
                     port +
                     "?username=" + userName + 
                     "&aesPassword=" + aesPassword + 
                     "&appId=" + appId +
                     "&nonce_str=" + nonce_str +
                     "&sign=" + signVal
-    window.open(login_url)
+    open(url)
 }
-// login test end
+// login end
+
+// get content list begin
+function getContentList() {
+    var siteIds = 1
+    var count = 99999
+    var port = '/api/content/list.jspx'
+    var url =   index + port + 
+                "?siteIds=" + siteIds +
+                "&count=" + count
+    open(url)
+}
+// get content list end
+
+// get channel list begin
+function getChannelList() {
+    var siteId = 1
+    var count = 99999
+    var port = '/api/channel/list.jspx'
+    var url =   index + port + 
+                "?siteId=" + siteId +
+                "&count=" + count
+    open(url)
+}
+// get channel list end
 
 
 // create sign begin
